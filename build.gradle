@@ -32,7 +32,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group = "net.darkhax.sasit"
-archivesBaseName = "ShoveASockInIt"
+archivesBaseName = "StuffASockInIt"
 version = getVersionFromJava(file("src/main/java/net/darkhax/sasit/libs/Constants.java"))
 
 //Defines the MC environment information.
@@ -65,10 +65,10 @@ processResources {
 
 jar {
 
-	manifest {
-	
-	    attributes 'FMLAT': 'lttweaks_at.cfg'
-	}
+    manifest {
+
+        attributes "FMLCorePlugin": "net.darkhax.sasit.SASITLoadingPlugin", "FMLCorePluginContainsFMLMod": "true"
+    }
 }
 
 //Pulls the build version from a Java file.
@@ -172,7 +172,7 @@ curseforge {
         id = System.getenv("projectId") ? System.getenv("projectId") : "0";
         
         releaseType = "alpha";
-        changelog = "All changes can be found here: https://github.com/Darkhax-Minecraft/Shove-A-Sock-In-It/commits/master";
+        changelog = "All changes can be found here: https://github.com/Darkhax-Minecraft/Stuff-A-Sock-In-It/commits/master";
 
         addGameVersion "1.10.2"
         
