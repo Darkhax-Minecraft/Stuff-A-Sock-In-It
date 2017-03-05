@@ -7,9 +7,10 @@ public class Constants {
 
     public static final String MODID = "sasit";
 
-    public static final String MOD_NAME = "Shove A Sock In It";
+    public static final String MOD_NAME = "Stuff A Sock In It";
 
     public static final String VERSION_NUMBER = "1.0.0.0";
 
+    // How Ironic :p
     public static final Logger LOG = LogManager.getLogger(MOD_NAME);
 }
