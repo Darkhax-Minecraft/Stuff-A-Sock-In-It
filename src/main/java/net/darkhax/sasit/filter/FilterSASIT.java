@@ -24,7 +24,6 @@ public class FilterSASIT implements org.apache.logging.log4j.core.Filter, java.u
     @Override
     public Result filter (LogEvent event) {
 
-        System.out.println("Test");
         return ConfigurationHandler.requiresFiltering("[" + event.getLoggerName() + "]: " + event.getMessage().getFormattedMessage()) ? Result.DENY : Result.NEUTRAL;
     }
 
