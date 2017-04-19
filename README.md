@@ -1,6 +1,9 @@
 # Stuff A Sock In It! [![](http://cf.way2muchnoise.eu/262137.svg)](https://github.com/Darkhax-Minecraft/Stuff-A-Sock-In-It) [![](http://cf.way2muchnoise.eu/versions/262137.svg)](https://github.com/Darkhax-Minecraft/Stuff-A-Sock-In-It)
 An addon for [CraftTweaker](https://minecraft.curseforge.com/projects/crafttweaker) which provides scripts with a way to interface with the LootTable system in Minecraft. 
 
+[![Nodecraft](https://i.imgur.com/sz9PUmK.png)](https://nodecraft.com/r/darkhax)    
+This project is sponsored by Nodecraft. Use code [Darkhax](https://nodecraft.com/r/darkhax) for 30% off your first month of service!
+
 ## Source Code
 The latest source code can be found here on [GitHub](https://github.com/Darkhax-Minecraft/LootTableTweaker). If you are using Git, you can use the following command to clone the project: `git clone git:github.com/Darkhax-Minecraft/Stuff-A-Sock-In-It.git`
 
