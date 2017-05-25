@@ -1,0 +1,23 @@
+[  
+   {  
+      "modid":"sasit",
+      "name":"Stuff A Sock In It",
+      "description":"Stops logs from being annoying",
+      "version":"${version}",
+      "mcversion":"${mcversion}",
+      "url":"",
+      "updateUrl":"",
+      "authorList":[  
+         "Darkhax"
+      ],
+      "credits":"",
+      "logoFile":"",
+      "screenshots":[  
+
+      ],
+      "parent":"",
+      "dependencies":[  
+
+      ]
+   }
+]

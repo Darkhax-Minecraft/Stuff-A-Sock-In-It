@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 
 import net.darkhax.sasit.handler.ConfigurationHandler;
 import net.darkhax.sasit.io.PrintStreamFilterable;
-import net.darkhax.sasit.libs.Constants;
 import net.darkhax.sasit.libs.LoggerUtils;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
 
@@ -16,12 +15,12 @@ public class SASITCallHook implements IFMLCallHook {
     @Override
     public Void call () throws Exception {
 
-        Constants.LOG.info("The mod has started up!");
+        SASITModContainer.LOG.info("The mod has started up!");
         ConfigurationHandler.initConfig(new File("config/sasit.cfg"));
-        Constants.LOG.info("Logs containing the following text may have been removed!");
+        SASITModContainer.LOG.info("Logs containing the following text may have been removed!");
 
         for (final String entry : ConfigurationHandler.basicFilter) {
-            Constants.LOG.info(entry);
+            SASITModContainer.LOG.info(entry);
         }
 
         // Generic system outstream

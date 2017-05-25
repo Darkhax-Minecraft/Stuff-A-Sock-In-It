@@ -55,10 +55,12 @@ public class ConfigurationHandler {
 
     public static boolean requiresFiltering (String message) {
 
-        for (final String filter : basicFilter)
-            if (message.contains(filter))
+        for (final String filter : basicFilter) {
+            if (message.contains(filter)) {
                 return true;
-
+            }
+        }
+        
         return false;
     }
 }
