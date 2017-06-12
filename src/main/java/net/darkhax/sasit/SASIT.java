@@ -1,26 +1,31 @@
 package net.darkhax.sasit;
 
 import java.io.File;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.darkhax.sasit.handler.ConfigurationHandler;
 import net.darkhax.sasit.io.PrintStreamFilterable;
 import net.darkhax.sasit.libs.LoggerUtils;
-import net.minecraftforge.fml.relauncher.IFMLCallHook;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 
-public class SASITCallHook implements IFMLCallHook {
+@Mod(modid = "sasit", name = "Stuff A Sock In It", version = "@VERSION@")
+public class SASIT {
 
-    @Override
-    public Void call () throws Exception {
+    public static Logger LOG = LogManager.getLogger("sasit");
 
-        SASITModContainer.LOG.info("The mod has started up!");
+    @EventHandler
+    public void onModConstructed (FMLConstructionEvent event) {
+
+        LOG.info("The mod has started up!");
         ConfigurationHandler.initConfig(new File("config/sasit.cfg"));
-        SASITModContainer.LOG.info("Logs containing the following text may have been removed!");
+        LOG.info("Logs containing the following text may have been removed!");
 
         for (final String entry : ConfigurationHandler.basicFilter) {
-            SASITModContainer.LOG.info(entry);
+            LOG.info(entry);
         }
 
         // Generic system outstream
@@ -47,12 +52,5 @@ public class SASITCallHook implements IFMLCallHook {
         if (ConfigurationHandler.filterOthers) {
             LoggerUtils.filterOtherLog4JLoggers();
         }
-
-        return null;
-    }
-
-    @Override
-    public void injectData (Map<String, Object> data) {
-
     }
 }

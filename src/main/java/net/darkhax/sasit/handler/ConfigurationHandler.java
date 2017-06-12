@@ -60,7 +60,7 @@ public class ConfigurationHandler {
                 return true;
             }
         }
-        
+
         return false;
     }
 }
