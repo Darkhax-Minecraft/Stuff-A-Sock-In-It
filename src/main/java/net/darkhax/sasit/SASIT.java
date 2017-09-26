@@ -11,6 +11,7 @@ import net.darkhax.sasit.libs.LoggerUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
+import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 
 @Mod(modid = "sasit", name = "Stuff A Sock In It", version = "@VERSION@", acceptableRemoteVersions = "*", certificateFingerprint = "@FINGERPRINT@")
 public class SASIT {
@@ -52,5 +53,11 @@ public class SASIT {
         if (ConfigurationHandler.filterOthers) {
             LoggerUtils.filterOtherLog4JLoggers();
         }
+    }
+    
+    @EventHandler
+    public void onFingerprintViolation (FMLFingerprintViolationEvent event) {
+
+        LOG.warn("Invalid fingerprint detected! The file " + event.getSource().getName() + " may have been tampered with. This version will NOT be supported by the author!");
     }
 }
