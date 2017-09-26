@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 
-@Mod(modid = "sasit", name = "Stuff A Sock In It", version = "@VERSION@")
+@Mod(modid = "sasit", name = "Stuff A Sock In It", version = "@VERSION@", acceptableRemoteVersions = "*", certificateFingerprint = "@FINGERPRINT@")
 public class SASIT {
 
     public static Logger LOG = LogManager.getLogger("sasit");
