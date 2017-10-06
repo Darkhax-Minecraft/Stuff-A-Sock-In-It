@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 
+import net.darkhax.sasit.SASIT;
 import net.darkhax.sasit.filter.FilterSASIT;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.FMLRelaunchLog;
@@ -37,17 +38,18 @@ public class LoggerUtils {
 
     public static void filterForgeLogger () {
 
-        final Field coreLog = ReflectionHelper.findField(FMLLog.class, "coreLog");
-        final Field myLog = ReflectionHelper.findField(FMLRelaunchLog.class, "myLog");
-
         try {
 
+            final Field coreLog = ReflectionHelper.findField(FMLLog.class, "log");
+            final Field myLog = ReflectionHelper.findField(FMLRelaunchLog.class, "log");
+            
             final FMLRelaunchLog log = (FMLRelaunchLog) coreLog.get(null);
             ((org.apache.logging.log4j.core.Logger) myLog.get(log)).addFilter(FILTER);
         }
 
-        catch (IllegalArgumentException | IllegalAccessException e) {
+        catch (RuntimeException | IllegalAccessException e) {
 
+            SASIT.LOG.catching(e);
         }
     }
 }
