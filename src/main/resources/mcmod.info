@@ -5,7 +5,7 @@
       "description":"Stops logs from being annoying",
       "version":"${version}",
       "mcversion":"${mcversion}",
-      "url":"",
+      "url":"https://minecraft.curseforge.com/projects/stuff-a-sock-in-it",
       "updateUrl":"",
       "authorList":[  
          "Darkhax"
