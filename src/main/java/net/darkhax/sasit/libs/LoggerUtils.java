@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 
 import net.darkhax.sasit.SASIT;
 import net.darkhax.sasit.filter.FilterSASIT;
 import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.relauncher.FMLRelaunchLog;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class LoggerUtils {
@@ -40,11 +40,14 @@ public class LoggerUtils {
 
         try {
 
-            final Field coreLog = ReflectionHelper.findField(FMLLog.class, "log");
-            final Field myLog = ReflectionHelper.findField(FMLRelaunchLog.class, "log");
+            final Field fieldLog = ReflectionHelper.findField(FMLLog.class, "log");
             
-            final FMLRelaunchLog log = (FMLRelaunchLog) coreLog.get(null);
-            ((org.apache.logging.log4j.core.Logger) myLog.get(log)).addFilter(FILTER);
+            final Logger log = (Logger) fieldLog.get(null);
+            
+            if (log instanceof org.apache.logging.log4j.core.Logger) {
+            	
+            	((org.apache.logging.log4j.core.Logger) log).addFilter(FILTER);
+            }
         }
 
         catch (RuntimeException | IllegalAccessException e) {
