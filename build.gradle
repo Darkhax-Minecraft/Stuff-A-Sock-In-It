@@ -39,7 +39,7 @@ version = getVersionFromJava(file("src/main/java/net/darkhax/sasit/libs/Constant
 //Defines the MC environment information.
 minecraft {
 
-    version = "1.10.2-12.18.3.2234"
+    version = "1.10.2-12.18.3.2511"
     mappings = "stable_29"
     runDir = "run"
 }
