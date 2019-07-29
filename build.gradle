@@ -44,6 +44,8 @@ archivesBaseName = "${mod_name}-${version_minecraft}"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+println "Mave = " + findProperty('urlMaven')
+
 minecraft {
 
     version = "${version_minecraft}-${version_forge}"
