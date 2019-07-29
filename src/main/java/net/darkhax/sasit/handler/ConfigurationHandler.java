@@ -7,6 +7,8 @@ import net.minecraftforge.common.config.Configuration;
 public class ConfigurationHandler {
 
     public static String[] basicFilter = {};
+    
+    public static String[] regexFilters = {};
 
     public static boolean filterGeneric = true;
 
@@ -40,7 +42,8 @@ public class ConfigurationHandler {
     public static void syncConfig () {
 
         basicFilter = config.getStringList("BasicFilter", Configuration.CATEGORY_GENERAL, basicFilter, "A list of strings. If a console message contains any of these, it will be filtered out of the log.");
-
+        regexFilters = config.getStringList("RegexFilters", Configuration.CATEGORY_GENERAL, basicFilter, "A list of regex patterns. If a console message matches one of these filters they will be removed from the log.");
+        
         final String filterCat = "FILTERS";
         filterGeneric = config.getBoolean("FilterSystem", filterCat, true, "Should messages from system out be filtered?");
         filterJava = config.getBoolean("FilterJava", filterCat, true, "Should messages from java loggers be filtered?");
@@ -59,6 +62,14 @@ public class ConfigurationHandler {
             if (message.contains(filter)) {
                 return true;
             }
+        }
+        
+        for (final String regex : regexFilters) {
+        	
+        	if (message.matches(regex)) {
+        		
+        		return true;
+        	}
         }
 
         return false;
