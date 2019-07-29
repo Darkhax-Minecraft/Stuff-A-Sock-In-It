@@ -55,25 +55,6 @@ minecraft {
     replaceIn "${mod_class}.java"
 }
 
-repositories {
-
-    maven {
-
-        url "http://maven.mcmoddev.com"
-    }
-    
-    maven {
-    
-        url 'http://maven.blamejared.com'
-    }
-}
-
-dependencies {
-
-    deobfProvided "net.darkhax.bookshelf:Bookshelf-1.12.2:${version_bookshelf}"
-    deobfProvided "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${version_minetweaker}"
-}
-
 processResources {
 
     inputs.property "version", project.version
