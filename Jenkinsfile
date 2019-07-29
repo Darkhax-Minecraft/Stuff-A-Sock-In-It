@@ -20,7 +20,7 @@ pipeline {
         
 		    steps {
 			
-			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_SECRET_FILE')]) {
+			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
 			
 			        echo 'Building and Deploying'
                     sh './gradlew build publish curseforge --stacktrace'
