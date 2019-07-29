@@ -37,7 +37,7 @@ apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Co
 apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/maven.gradle'
 
 println 'Secret file ' + findProperty('secretFile')
-loadSecrets(findProperty('secretFile'))
+loadSecrets(new File(findProperty('secretFile')))
 
 version = "${mod_version}" + getBuildNumber()
 group = "${mod_group}"
