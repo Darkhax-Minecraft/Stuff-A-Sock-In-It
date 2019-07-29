@@ -18,18 +18,25 @@ buildscript {
     dependencies {
     
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.1.0'
     }
+}
+
+plugins {
+
+   id 'com.matthewprenger.cursegradle' version '1.1.0'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'maven-publish' 
 
+apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/generic/secrets.gradle'
+apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/generic/patreon.gradle'
 apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/generic/markdown-git-changelog.gradle'
 apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/artifacts.gradle'
 apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/maven.gradle'
 
+loadSecrets()
 version = "${mod_version}" + getBuildNumber()
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${version_minecraft}"
@@ -48,6 +55,25 @@ minecraft {
     replaceIn "${mod_class}.java"
 }
 
+repositories {
+
+    maven {
+
+        url "http://maven.mcmoddev.com"
+    }
+    
+    maven {
+    
+        url 'http://maven.blamejared.com'
+    }
+}
+
+dependencies {
+
+    deobfProvided "net.darkhax.bookshelf:Bookshelf-1.12.2:${version_bookshelf}"
+    deobfProvided "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${version_minetweaker}"
+}
+
 processResources {
 
     inputs.property "version", project.version
@@ -63,6 +89,8 @@ processResources {
     
         exclude 'mcmod.info'
     }
+    
+    from 'LICENSE'
 }
 
 String getBuildNumber() {
@@ -83,15 +111,15 @@ if (JavaVersion.current().isJava8Compatible()) {
 }
 
 curseforge {
-
-    apiKey = System.getenv('curse_auth') ? System.getenv('curse_auth') : 0 
+   
+    apiKey = findProperty('curse_auth') ?: 0 
     def versions = "${curse_versions}".split(', ')
 
     project {
 
         id = "${curse_project}"
         releaseType = 'alpha'
-        changelog = getGitChangelog
+        changelog = getGitChangelog() + "\n\nHuge thanks to my supporters on [Patreon](https://www.patreon.com/Darkhax?MCChangelog?${mod_class})\n\n" + getPledgeLog()
         changelogType = 'markdown'
 
         versions.each {

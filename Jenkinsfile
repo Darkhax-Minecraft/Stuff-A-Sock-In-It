@@ -18,11 +18,11 @@ pipeline {
         
         stage('Build and Deploy') {
         
-            steps {
-            
-                echo 'Building and Deploying'
+		    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_SECRET_FILE')]) {
+			
+			    echo 'Building and Deploying'
                 sh './gradlew build publish curseforge'
-            }
+			}
         }
     }
 }
