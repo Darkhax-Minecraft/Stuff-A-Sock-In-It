@@ -12,7 +12,6 @@ pipeline {
             
                 echo 'Cleaning Project'
                 sh 'chmod +x gradlew'
-                sh './gradlew clean'
             }
         }
         
@@ -23,7 +22,7 @@ pipeline {
 			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
 			
 			        echo 'Building and Deploying'
-                    sh './gradlew build publish curseforge --stacktrace'
+                    sh './gradlew clean build publish curseforge --stacktrace'
 			    }
 			}
         }
