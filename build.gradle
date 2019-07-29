@@ -36,8 +36,10 @@ apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Co
 apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/artifacts.gradle'
 apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/master/minecraft/maven.gradle'
 
-println 'Secret file ' + findProperty('secretFile')
-loadSecrets(new File(findProperty('secretFile')))
+if (project.hasProperty('secretFile')) {
+
+    loadSecrets(new File((String) findProperty('secretFile')))
+}
 
 version = "${mod_version}" + getBuildNumber()
 group = "${mod_group}"
@@ -45,8 +47,6 @@ archivesBaseName = "${mod_name}-${version_minecraft}"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-println "Mave = " + findProperty('urlMaven')
 
 minecraft {
 
