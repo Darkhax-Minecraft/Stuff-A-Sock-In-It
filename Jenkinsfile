@@ -4,28 +4,54 @@ pipeline {
 
     agent any
     
-    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
-
-        stages {
+    stages {
     
-            stage('Clean') {
+        stage('Clean') {
         
-                steps {
+            steps {
             
-                    echo 'Cleaning Project'
+			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
+				
+                    echo 'Cleaning project workspace.'
                     sh 'chmod +x gradlew'
-	    			sh './gradlew clean'
-                }
-            }
-        
-            stage('Build and Deploy') {
-        
-	    	    steps {
-						
-	    		    echo 'Building and Deploying'
-                    sh './gradlew build publish curseforge --stacktrace --warn'
-	    		}
+				    sh './gradlew clean'
+				}
             }
         }
-	}
+        
+        stage('Build and Deploy') {
+        
+		    steps {
+			
+			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
+			
+			        echo 'Building project.'
+                    sh './gradlew build --stacktrace --warn'
+			    }
+			}
+        }
+		
+		stage('Maven') {
+		
+		    steps {
+			
+			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
+			
+			        echo 'Deploying to Maven.'
+                    sh './gradlew publish --stacktrace --warn'
+			    }
+			}
+		}
+		
+		stage('CurseForge') {
+		    steps {
+			
+			    withCredentials([file(credentialsId: 'mod_build_secrets', variable: 'ORG_GRADLE_PROJECT_secretFile')]) {
+			
+			        echo 'Deploying to CurseForge.'
+                    sh './gradlew curseforge --stacktrace --warn'
+			    }
+			}
+		}
+    }
 }
