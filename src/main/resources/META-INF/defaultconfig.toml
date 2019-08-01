@@ -1,0 +1,19 @@
+[general]
+	# Should messages to Java's output stream be filtered?
+	filterJavaOut = true
+
+	# Should messages to Java loggers be filtered?
+	filterJavaLogger = true
+
+	# Should messages to the root Log4J logger be filtered?
+	filterLog4JRoot = true
+
+	# Should the mod try to filter misc Log4J loggers?
+	filterLog4JMisc = true
+
+[filters]
+	# A set of basic filters. If a message contains any entry as a sub string it will be filtered.
+	basic = []
+
+	# A set of regex filters. If a message matches any of the patterns it will be filtered.
+	regex = []
