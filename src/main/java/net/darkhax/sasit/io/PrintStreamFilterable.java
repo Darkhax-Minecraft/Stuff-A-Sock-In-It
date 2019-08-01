@@ -2,7 +2,7 @@ package net.darkhax.sasit.io;
 
 import java.io.PrintStream;
 
-import net.darkhax.sasit.handler.ConfigurationHandler;
+import net.darkhax.sasit.SASIT;
 
 public class PrintStreamFilterable extends PrintStream {
 
@@ -12,17 +12,17 @@ public class PrintStreamFilterable extends PrintStream {
     }
 
     @Override
-    public void println (String x) {
+    public void println (String s) {
 
-        if (!ConfigurationHandler.requiresFiltering(x)) {
-            super.println(x);
+        if (!SASIT.CONFIG.shouldFilterMessage(s)) {
+            super.println(s);
         }
     }
 
     @Override
     public void print (String s) {
 
-        if (!ConfigurationHandler.requiresFiltering(s)) {
+        if (!SASIT.CONFIG.shouldFilterMessage(s)) {
             super.print(s);
         }
     }
